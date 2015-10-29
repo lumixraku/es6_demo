@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+// next传参
+// var Generator = function* (){
+//     var hello = yield "hello";
+//     console.log(hello);           // hi
+//     var world = yield "world";
+//     console.log(world);           // undefined  //因为第三个next没有传参
+// };
+
+// var gen = new Generator();
+
+// var first = gen.next("nothing");  //第一个参数是接收不到的
+// var second = gen.next("hi");
+// var third = gen.next();
+
+
+function* genFunc () {
+    var result = yield 1; //result的值是 next中传入的参数
+    console.log(result);
+}
+var gen = genFunc();
+gen.next(); // 此时generator内部执行到 yield 1 并暂停，但还未对result赋值！ // 即使异步也可以！
+setTimeout(function () {
+    gen.next(123) // 给result赋值并继续执行，输出: 123 //第n个next总是给第n-1个yield赋值 //同理 第1个next的参数不会有yield得到
+}, 1000)
+
+</script>
+</body>
+</html>

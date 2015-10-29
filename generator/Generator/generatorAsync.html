@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+// 当前的 Generator
+var activeGenerator;
+// 处理 g.next() 功能
+function gNext() {
+  return function (err, data) {
+    if (err) {
+      throw err;
+    }
+    // 前文中的 g.next()，并把回调函数的结果作为参数传递给 yield
+    activeGenerator.next(data)
+  }
+}
+// 控制工具
+function gQueue(generatorFunc) {  //这里的 就是 35行的 flow 函数
+  activeGenerator = generatorFunc(gNext());
+  activeGenerator.next();
+}
+
+function asyncFunc(cb) {
+  // 这个函数模拟一个异步操作，将在 1 秒后触发回调函数
+  setTimeout(function() {
+    cb(null, 100);  //每一次异步之后都调用 了 activeGenerator.next(data)
+  }, 1000)
+}
+// 声明一个 Generator 并传给 gQueue
+gQueue(function * flow(next) {
+  console.log('start');
+  // 执行异步函数 asyncFunc，并把 next 注册在其回调函数里
+  var y = yield asyncFunc(next); //这里的next 就是 gNext()
+  // 回调执行完成后，会触发 g.next()，此时 y 的值为 asyncFunc 回调里的 100
+  console.log('y is', y);
+  // 同上
+  var z = yield asyncFunc(next);
+  console.log('z is ', z);
+  console.log('end')
+});
+
+
+
+</script>
+</body>
+</html>
