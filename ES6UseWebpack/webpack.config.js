@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './src/async/async.js',
+  entry: './src/generator/generator.js',
   // entry: './src/import/singletonEs6.js',
   output: {
     filename: './dist/bundle.js'

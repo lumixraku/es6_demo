@@ -1,5 +1,5 @@
 var fetch = require('node-fetch');
-//fetch() 将会返回一个
+//fetch() 将会返回一个响应对象  这个对象不是纯文本
 // fetch('https://api.github.com/users/github').then(function(data){
 //     console.log(data);
 // })
