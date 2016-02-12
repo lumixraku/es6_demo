@@ -55,7 +55,7 @@ function co(generator) {
     if(err){
       return fn(err);
     }
-    var step = gen.next(result); //{value: fn , done: false}
+    var step = gen.next; //{value: fn , done: false} //在co中 yield后面是一个函数
     if (!step.done) {//没有执行完毕 继续next
 
       //执行异步函数  step.value 就是yield后的异步函数
