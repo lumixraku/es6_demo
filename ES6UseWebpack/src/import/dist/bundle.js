@@ -44,57 +44,159 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// import {funA} from './moduleD.js';
-	// funA();
 	'use strict';
 
-	var _moduleDJs = __webpack_require__(1);
+	var _interopRequireDefault = __webpack_require__(1)['default'];
 
-	console.log(_moduleDJs.Data);
-	(0, _moduleDJs.funB)();
-	(0, _moduleDJs.funA)();
+	var _moduleBJs = __webpack_require__(3);
+
+	var _moduleBJs2 = _interopRequireDefault(_moduleBJs);
+
+	console.log(_moduleBJs2['default'].hehe);
 
 /***/ },
 /* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(2);
+
+/***/ },
+/* 2 */
 /***/ function(module, exports) {
 
-	//ES6的一个文件可以export多个对象
+	"use strict";
 
-	'use strict';
+	exports.__esModule = true;
 
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-	function funA() {
-	  console.log('fun A');
-	}
-
-	function funB() {
-	  console.log('fun B');
-	}
-
-	var Data = {
-	  baseUrl: 'http://localhost:3000/api/comments',
-	  foo: function foo(params) {
-	    var _this = this;
-
-	    fetch(this.baseUrl).then(function (res) {
-	      console.log(res);
-	      return res.json();
-	    }).then(function (res) {
-	      console.log(_this.baseUrl);
-	    });
-	  }
+	exports.default = function (obj) {
+	  return obj && obj.__esModule ? obj : {
+	    default: obj
+	  };
 	};
 
-	exports.funA = funA;
-	exports.funB = funB;
-	exports.Data = Data;
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
 
-	// 下面的做法也OK
-	// export {funA};
-	// export {funB};
-	// export {Data};
+	"use strict";
+
+	var _createClass = __webpack_require__(4)["default"];
+
+	var _classCallCheck = __webpack_require__(9)["default"];
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var A = (function () {
+	  function A() {
+	    _classCallCheck(this, A);
+	  }
+
+	  _createClass(A, null, [{
+	    key: "hehe",
+	    value: {
+	      a: 1
+	    },
+	    enumerable: true
+	  }]);
+
+	  return A;
+	})();
+
+	exports["default"] = A;
+	module.exports = exports["default"];
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(5);
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _defineProperty = __webpack_require__(6);
+
+	var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function () {
+	  function defineProperties(target, props) {
+	    for (var i = 0; i < props.length; i++) {
+	      var descriptor = props[i];
+	      descriptor.enumerable = descriptor.enumerable || false;
+	      descriptor.configurable = true;
+	      if ("value" in descriptor) descriptor.writable = true;
+	      (0, _defineProperty2.default)(target, descriptor.key, descriptor);
+	    }
+	  }
+
+	  return function (Constructor, protoProps, staticProps) {
+	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	    if (staticProps) defineProperties(Constructor, staticProps);
+	    return Constructor;
+	  };
+	}();
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(7), __esModule: true };
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var $ = __webpack_require__(8);
+	module.exports = function defineProperty(it, key, desc){
+	  return $.setDesc(it, key, desc);
+	};
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	var $Object = Object;
+	module.exports = {
+	  create:     $Object.create,
+	  getProto:   $Object.getPrototypeOf,
+	  isEnum:     {}.propertyIsEnumerable,
+	  getDesc:    $Object.getOwnPropertyDescriptor,
+	  setDesc:    $Object.defineProperty,
+	  setDescs:   $Object.defineProperties,
+	  getKeys:    $Object.keys,
+	  getNames:   $Object.getOwnPropertyNames,
+	  getSymbols: $Object.getOwnPropertySymbols,
+	  each:       [].forEach
+	};
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(10);
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	exports.default = function (instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	};
 
 /***/ }
 /******/ ]);

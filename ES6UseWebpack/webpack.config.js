@@ -1,6 +1,7 @@
 module.exports = {
-  entry: './src/generator/generator.js',
+  // entry: './src/generator/generator.js',
   // entry: './src/import/singletonEs6.js',
+  entry: './src/import/moduleCC.js',
   output: {
     filename: './dist/bundle.js'
   },
